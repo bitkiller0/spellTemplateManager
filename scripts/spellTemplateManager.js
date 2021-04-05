@@ -313,7 +313,8 @@ class spellTemplateManager {
 	static async manageUnmanaged(Combat,GM=false){
 		console.log("Spell Template Manager | Looking for Unmanaged Templates");
 		let scene=Combat.scene;
-		let turnActor = Combat.combatant.actor;
+		let turnActor = Combat.combatant?.actor;
+		if(!turnActor) return;
 		let name = turnActor.name;
 		
 		let managing = scene.data.templates.filter(i => i.flags.spellTemplateManager === undefined && (GM || i.user === game.userId));
